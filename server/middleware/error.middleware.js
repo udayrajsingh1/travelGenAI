@@ -8,12 +8,25 @@ export const errorHandler = (err, req, res, next) => {
     let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     let message = err.message;
 
+    // CastError: thrown when an invalid MongoDB ObjectId is provided
     if(err.name === "CastError" && err.kind === "ObjectId"){
         statusCode = 400
         message = Object.values(err.errors)
         .map((val) => val.message)
         .join(", ");
     }
+
+
+    // for validation error
+    if(err.name === "ValidationError"){
+        statusCode = 400;
+        message = Object.values(err.errors)
+        .map((val) => val.message)
+        .join(", ")
+    }
+    
+
+    // for duplication error
     if (err.code === 11000) {
         statusCode = 400;
         const field = Object.keys(err.keyValue)[0];

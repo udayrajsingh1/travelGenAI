@@ -98,4 +98,5 @@ tripSchema.index({ owner: 1, createdAt: -1 });
 tripSchema.index({ owner: 1, status: 1 });
 
 
-export const Trip = mongoose.model("Trip", tripSchema);
+const Trip = mongoose.model("Trip", tripSchema);
+export default Trip;

@@ -4,7 +4,7 @@ import User from "../models/user.model.js";
 
 
 
-export const getMyTrips = asyncHandler((req, res) => {
+export const getMyTrips = asyncHandler(async (req, res) => {
     const trips = await Trip.find({ owner: req.user._id })
     .sort({ createdAt: -1 })
     .select("-itinerary") 

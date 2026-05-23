@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
-import { User } from "../models/user.model";
-import generateToken from "../utils/generateToken";
+import User from "../models/user.model.js";
+import generateToken from "../utils/generateToken.js";
 
 export const signup = asyncHandler(async (req, res) => {
     const {name, email, password} = req.body
@@ -34,14 +34,15 @@ export const signup = asyncHandler(async (req, res) => {
 })
 
 
-export const login = asyncHandler(async (res, req) => {
+
+export const login = asyncHandler(async (req, res) => {
     const {email, password} = req.body
     if(!email || !password){
         res.status(400)
         throw new Error("Please provide email and password")
     }
 
-    const user = await User.findOne({email}).select(+password)
+    const user = await User.findOne({email}).select("+password")
     if (!user) {
         res.status(401);
         throw new Error("Invalid email or password"); 

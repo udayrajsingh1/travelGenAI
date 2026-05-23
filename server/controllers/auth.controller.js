@@ -85,7 +85,7 @@ export const updateMe = asyncHandler(async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
         req.user._id,
         allowedUpdates,
-        { new: true, runValidators: true } // runValidators re-runs schema validation
+        { new: true, runValidators: true } 
     );
  
     res.status(200).json({

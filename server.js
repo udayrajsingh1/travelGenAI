@@ -56,13 +56,14 @@ app.use(errorHandler);
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`
-  ╔══════════════════════════════════════════╗
-  ║       🌍 TravelGen AI Server             ║
-  ║──────────────────────────────────────────║
-  ║  Status    : Running                     ║
-  ║  Port      : ${PORT}                        ║
-  ║  API Base  : http://localhost:${PORT}/api   ║
-  ╚══════════════════════════════════════════╝
+    ┌────────────────────────────────────────────────────────┐
+    │ 🌍 TravelGen AI Server Active                          │
+    ├────────────────────────────────────────────────────────┤
+    │ 🟢 Status   : Running Successfully                     │
+    │ 🔌 Port     : ${PORT}                                    │
+    │ 🔗 Proxy    : Listening on all network interfaces      │
+    └────────────────────────────────────────────────────────┘
   `);
 });
+
 

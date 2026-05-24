@@ -70,6 +70,20 @@ const tripSchema = new mongoose.Schema(
             enum: ["Solo", "couple", "family", "group"],
             required: true,
         },
+        travelPace: {
+            type: String,
+            enum: ["relaxed", "active", "packed"],
+            default: "active",
+        },
+        interests: {
+            type: [String], 
+            default: [],
+        },
+        dietaryRestrictions: {
+            type: String,
+            default: "none",
+        },
+
 
 
         title: { type: String },        

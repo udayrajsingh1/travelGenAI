@@ -8,7 +8,7 @@ import { notFound, errorHandler } from "./server/middleware/error.middleware.js"
 
 import authRoutes from "./server/routes/auth.routes.js";
 import tripRoutes from "./server/routes/trip.routes.js";
-// import aiRoutes from "./routes/aiRoutes.js";
+import aiRoutes from "./server/routes/ai.routes.js";
 
 dotenv.config()
 const PORT = process.env.PORT || 5000;
@@ -45,7 +45,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/auth", authRoutes);   
 app.use("/api/trips", tripRoutes);  
-// app.use("/api/ai", aiRoutes);  
+app.use("/api/ai", aiRoutes);  
 
 
 app.use(notFound);

@@ -1,14 +1,14 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { connectDB } from "./server/config/db.js";
+import { connectDB } from "./config/db.js";
 
-import { notFound, errorHandler } from "./server/middleware/error.middleware.js";
+import { notFound, errorHandler } from "./middleware/error.middleware.js";
 
 
-import authRoutes from "./server/routes/auth.routes.js";
-import tripRoutes from "./server/routes/trip.routes.js";
-import aiRoutes from "./server/routes/ai.routes.js";
+import authRoutes from "./routes/auth.routes.js";
+import tripRoutes from "./routes/trip.routes.js";
+import aiRoutes from "./routes/ai.routes.js";
 
 dotenv.config()
 const PORT = process.env.PORT || 5000;

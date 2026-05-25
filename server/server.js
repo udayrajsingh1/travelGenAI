@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 
 
-
+await connectDB();
 
 const app = express();
 
@@ -71,8 +71,6 @@ app.listen(PORT, "0.0.0.0", () => {
     │ 🔗 Proxy    : Listening on all network interfaces      │
     └────────────────────────────────────────────────────────┘
   `);
-  connectDB();
 });
-
 
 

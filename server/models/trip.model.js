@@ -1,31 +1,31 @@
 import mongoose, { Mongoose } from "mongoose";
 
 const activitySchema = new mongoose.Schema(
-    {
-        time: { type: String },
-        name: { type: String },
-        description: { type: String },
-        estimatedCost: { type: Number }, 
-        category: { type: String },    
-        tips: { type: String },
+  {
+    time: { type: String },
+    name: { type: String },
+    description: { type: String },
+    estimatedCost: { type: Number },
+    category: { type: String },
+    tips: { type: String },
 
-    },
-    {
-        _id: false
-    }
+  },
+  {
+    _id: false
+  }
 )
 
 const dayPlanSchema = mongoose.Schema(
-    {
-        day: { type: Number },
-        theme: { type: String },
-        morning: [activitySchema],
-        afternoon: [activitySchema],
-        evening: [activitySchema]
-    },
-    {
-        _id: false
-    }
+  {
+    day: { type: Number },
+    theme: { type: String },
+    morning: [activitySchema],
+    afternoon: [activitySchema],
+    evening: [activitySchema]
+  },
+  {
+    _id: false
+  }
 )
 
 const budgetBreakdownSchema = new mongoose.Schema(
@@ -43,69 +43,69 @@ const budgetBreakdownSchema = new mongoose.Schema(
 
 
 const tripSchema = new mongoose.Schema(
-    {
-        owner: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
-            index: true,
-        },
-        destination: {
-            type: String,
-            required: [true, "Destination is required"]
-        },
-        duration: {
-            type: Number,
-            required: true,
-            min: [1, "Trip must be at least 1 day"],
-            max: [30, "Trip cannot exceed 30 days"],
-        },
-        budgetTier: {
-            type: String,
-            enum: ["budget", "moderate", "luxury"],
-            required: true,
-        },
-        travelers: {
-            type: String,
-            enum: ["Solo", "couple", "family", "group"],
-            required: true,
-        },
-        travelPace: {
-            type: String,
-            enum: ["relaxed", "active", "packed"],
-            default: "active",
-        },
-        interests: {
-            type: [String], 
-            default: [],
-        },
-        dietaryRestrictions: {
-            type: String,
-            default: "none",
-        },
+  {
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      index: true,
+    },
+    destination: {
+      type: String,
+      required: [true, "Destination is required"]
+    },
+    duration: {
+      type: Number,
+      required: true,
+      min: [1, "Trip must be at least 1 day"],
+      max: [30, "Trip cannot exceed 30 days"],
+    },
+    budgetTier: {
+      type: String,
+      enum: ["budget", "moderate", "luxury"],
+      required: true,
+    },
+    travelers: {
+      type: String,
+      enum: ["solo", "couple", "family", "group"],
+      required: true,
+    },
+    travelPace: {
+      type: String,
+      enum: ["relaxed", "active", "packed"],
+      default: "active",
+    },
+    interests: {
+      type: [String],
+      default: [],
+    },
+    dietaryRestrictions: {
+      type: String,
+      default: "none",
+    },
 
 
 
-        title: { type: String },        
-        summary: { type: String },      
-        bestTimeToVisit: { type: String },
-        localTips: { type: [String], default: [] },
-        itinerary: [dayPlanSchema],     
-        budgetBreakdown: budgetBreakdownSchema,
+    title: { type: String },
+    summary: { type: String },
+    bestTimeToVisit: { type: String },
+    localTips: { type: [String], default: [] },
+    itinerary: [dayPlanSchema],
+    budgetBreakdown: budgetBreakdownSchema,
 
-        status: {
-            type: String,
-            enum: ["generating", "completed", "failed"],
-            default: "generating",
-        },
+    status: {
+      type: String,
+      enum: ["generating", "completed", "failed"],
+      default: "generating",
+    },
 
-        isFavorited: {
-            type: Boolean,
-            default: false,
-        },
+    isFavorited: {
+      type: Boolean,
+      default: false,
+    },
 
 
-    }
+  }
 );
 
 tripSchema.index({ owner: 1, createdAt: -1 });
